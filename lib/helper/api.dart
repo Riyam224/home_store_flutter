@@ -6,6 +6,8 @@ class Api {
 
     if (response.statusCode == 200) {
       return response;
+    } else {
+      throw Exception('error status code ${response.statusCode}');
     }
   }
 }
