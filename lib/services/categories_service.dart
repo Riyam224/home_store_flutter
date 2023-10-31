@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:home_store/mpdels/product_model.dart';
 import 'package:http/http.dart' as http;
+class CategoriesService {
+  Future<List<ProductModel>> getCategoriesProducts(
+      {required String categoryName}) async {
+    http.Response response = await http.get(
+        Uri.parse('https://fakestoreapi.com/products/category/$categoryName'));
 
-// todo service for all the products
-class AllProductsService {
-  Future<List<ProductModel>> getAllProducts() async {
-    http.Response response =
-        await http.get(Uri.parse('https://fakestoreapi.com/products'));
-// return list as the url .. shows
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
       List<ProductModel> productsList = [];
@@ -16,7 +15,7 @@ class AllProductsService {
       }
       return productsList;
     } else {
-      throw Exception('error with status code  ${response.statusCode}');
+      throw Exception('error status code ${response.statusCode}');
     }
   }
 }
