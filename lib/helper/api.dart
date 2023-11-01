@@ -27,7 +27,14 @@ class Api {
     }
     http.Response response =
         await http.post((Uri.parse(url)), body: body, headers: headers);
-    Map<String, dynamic> data = jsonDecode(response.body);
-    return data;
+    // todo check for status code exception
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data;
+    } else {
+      // throw Exception(jsonDecode(response.body));
+      throw Exception(
+          'error status code ${response.statusCode} with body ${jsonDecode(response.body)}');
+    }
   }
 }
