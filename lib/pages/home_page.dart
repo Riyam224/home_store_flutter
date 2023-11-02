@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:home_store/widgets/custom_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -28,63 +29,19 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Center(
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                height: 130,
-                width: 220,
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                    blurRadius: 20,
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 0,
-                    offset: const Offset(10, 10),
-                  )
-                ]),
-                child: const Card(
-                  elevation: 10,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Handbag  Lv ',
-                          style: TextStyle(color: Colors.grey, fontSize: 19),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(r'$359'),
-                            Icon(
-                              FontAwesomeIcons.solidHeart,
-                              color: Colors.red,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              // todo image over container
-              Positioned(
-                right: 32,
-                bottom: 75,
-                child: Image.asset(
-                  'assets/images/img.jpg',
-                  height: 100,
-                ),
-              ),
-            ],
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 65),
+        child: GridView.builder(
+          clipBehavior: Clip.none,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1.6,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 100,
           ),
+          itemCount: 10,
+          itemBuilder: (BuildContext context, int index) {
+            return const CustomCard();
+          },
         ),
       ),
     );
