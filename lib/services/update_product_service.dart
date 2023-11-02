@@ -1,8 +1,6 @@
 import 'package:home_store/helper/api.dart';
 import 'package:home_store/mpdels/product_model.dart';
-
 class UpdateProductService {
-
    Future<ProductModel> addProduct(
       {required String title,
       required String price,
